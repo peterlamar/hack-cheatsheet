@@ -7,10 +7,7 @@
       {
         "name": "HHVM: Attach to Server",
         "type": "hhvm",
-        "request": "attach",
-        "host": "localhost",
-        "port": 8999,
-        "localWorkspaceRoot": "${workspaceFolder}"
+        "request": "attach"
       },
       {
         "name": "HHVM: Run Script",
