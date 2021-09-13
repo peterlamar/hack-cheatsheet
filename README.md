@@ -40,6 +40,13 @@ Attributes attach metadata to [Hack](https://docs.hhvm.com/hack/attributes/intro
 " -123"                     // numeric string
 '2e+5'                      // numeric string
 true, false                 // bool constants 1 and 0
+  $var = 42;                // Heredoc literal
+  $s = <<<   ID            
+Wow, look at this text!
+We can even have a semicolon here! ; or '' or ""!
+Variable substitution: $var
+ID;                         // Trailing ID must have no spaces
+  echo ">$s<\n";
 ```
 
 ## Declarations
