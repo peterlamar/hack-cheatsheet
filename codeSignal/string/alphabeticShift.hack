@@ -1,3 +1,6 @@
+/*
+For inputString = "crazy", the output should be alphabeticShift(inputString) = "dsbaz".
+*/
 function alphabeticShift(string $inputString) {
     return strtr($inputString,'abcdefghijklmnopqrstuvwxyz','bcdefghijklmnopqrstuvwxyza');
 }

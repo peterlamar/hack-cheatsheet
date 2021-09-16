@@ -7,6 +7,7 @@
 1. [Attributes](#attributes)
 1. [Expressions](#expressions)
 1. [Namespaces](#namespaces)
+1. [Floating point math](#floating-point-math)
 1. [References](#references)
 
 ## Preprocessor
@@ -141,6 +142,18 @@ namespace N {
 }  
 \N\f();                     // Use function f in namespace N
 use namespace N\f;          // Make f visible
+```
+## Floating point math 
+
+```php
+sin(x); cos(x); tan(x);     // Trig functions, x (double) is in radians
+asin(x); acos(x); atan(x);  // Inverses
+atan2(y, x);                // atan(y/x)
+sinh(x); cosh(x); tanh(x);  // Hyperbolic sin, cos, tan functions
+exp(x); log(x); log10(x);   // e to the x, log base e, log base 10
+pow(x, y); sqrt(x);         // x to the y, square root
+ceil(x); floor(x);          // Round up or down (as a double)
+fabs(x); fmod(x, y);        // Absolute value, x mod y
 ```
 
 
