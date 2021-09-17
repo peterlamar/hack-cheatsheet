@@ -86,10 +86,58 @@ $colors3[] = "green";                // insert a new element 3
 ## Statements
 
 ```php
-if ($x) a;                   // If x is true (not 0), evaluate a
-else if ($y) b;              // If not x and y (optional, may be repeated)
-elseif ($z) c;               // If not x and y (optional, may be repeated)
-else c;                      // If not x and not y (optional)
+if ($x) a;                   // If $x is true (not 0), evaluate a
+else if ($y) b;              // If not $x and y (optional, may be repeated)
+elseif ($z) c;               // If not $x and y (optional, may be repeated)
+else c;                      // If not $x and not y (optional)
+
+while ($x) a;                // Repeat 0 or more times while $x is true
+
+for ($x; y; z) a;            // Equivalent to: $x; while(y) {a; z;}
+
+$colors = vec["red", "white", "blue"];
+foreach ($colors as $color) {} // Iterate over collection of three strings
+
+$colors = vec["red", "white", "blue"];
+foreach ($colors as $key => $color) {} // Iterate with key and value
+
+foreach ($colors as $key => $_) {} // red, white and blue are ignored
+
+foreach($vec_of_tuples as list($here, $there)) // 
+foreach($vec_of_tuples as $key => list($here, $there))
+
+do a; while ($x);            // Equivalent to: a; while($x) a;
+
+switch ($x) {                // $x must be int
+    case X1: a;              // If $x == X1 (must be a const), jump here
+    case X2: b;              // Else if $x == X2, jump here
+    default: c;              // Else jump here (optional)
+}
+
+break;                       // Jump out of while, do, or for loop, or switch
+continue;                    // Jump to bottom of while, do, or for loop
+return x4;                   // Return $x from function to caller
+
+                             // Using state enforces object disposal
+using ($f1 = new TextFile("file1.txt", "rw")) {
+//  echo "\$f1 is >" . $f1 . "<\n";  // usage not permitted
+    echo "\$f1 is >" . $f1->__toString() . "<\n";} 
+
+{ using $f4 = TextFile::open_TextFile("file4.txt", "rw");
+  using $f5 = new TextFile("file5.txt", "rw");
+  // ... work with both files
+} // __dispose is called here for both $f4 and $f5
+
+throw new someException();   // Generate exception of given type
+try {}                       // Try possible exception generations
+catch () {}                  // Define a handler for type of exception
+finally {}                   // Occurs whether or not exception occured in try block
+
+namespace UseNS {
+  const int CON = 100;}      // Use statement permits names from
+use const UseNS\CON;         // one namespace to another
+echo "CON = ".\UseNS\CON."\n"; // access const CON by fully qualified 
+echo "CON = ".CON."\n";        // access by abbreviated name
 ```
 
 ## Expressions
