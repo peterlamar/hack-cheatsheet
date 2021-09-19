@@ -8,6 +8,15 @@
 1. [Expressions](#expressions)
 1. [Namespaces](#namespaces)
 1. [Floating point math](#floating-point-math)
+1. [String](#string)
+1. [Array](#array)
+1. [Vec](#vec)
+1. [Dict](#dict)
+1. [Keyset](#keyset)
+1. [Vector](#vector)
+1. [Map](#map)
+1. [Set](#Set)
+1. [Pair](#pair)
 1. [References](#references)
 
 ## Preprocessor
@@ -200,6 +209,145 @@ ceil(x); floor(x);          // Round up or down (as a double)
 fabs(x); fmod(x, y);        // Absolute value, x mod y
 ```
 
+## String
+
+```php
+$chars = str_split($inputString);
+foreach($chars as $c){}      // Iterate through char in string
+is_numeric($c);              // number or a numeric string
+count_chars($s, 0)           // count occurences and return 0-4 different results 0-array char=>freq, 1-array char > 0, 2-array char=0, 3-string with all unique, 4-string with all not used chars
+```
+
+## Array
+
+Regular [PHP Array](https://www.php.net/manual/en/language.types.array.php) (ordered map), listed here for completeness. Use Hack primities
+for new code going forward. 
+
+```php
+$a = array[];	                  // Initialize empty	
+$a = array[1, 2, 3];            // Literal
+$a = array("foo" => "bar");     // Literal
+$a = array(1 => "a",            // Literal, multiple types
+    "1"  => "b");
+var_dump($a);                   // Outputs values
+arr = array(5 => 1, 12 => 2);
+$arr[] = 56;    // This is the same as $arr[13] = 56;
+$arr["x"] = 42; // This adds a new element to
+                // the array with key "x"
+unset($arr[5]); // This removes the element from the array
+unset($arr);    // This deletes the whole array
+$array = array_values($array);  // Re-index:
+```
+
+Multi Dimensional Arrays
+```php
+<?php
+$array = array(
+    "foo" => "bar",
+    42    => 24,
+    "multi" => array(
+         "dimensional" => array(
+             "array" => "foo"
+         )
+    )
+);
+
+var_dump($array["foo"]);
+var_dump($array[42]);
+var_dump($array["multi"]["dimensional"]["array"]);
+?>
+```
+
+## Vec
+
+There are many helpful functions in the C, Vec, Keyset and Dict namespaces.
+
+```php
+$v = vec[];	                // Initialize empty	
+$v = vec[1, 2, 3];          // Literal
+$v = vec($container);	      // From Another Container
+$v = Vec\keys($container);  // Keys from Container	
+$v[] = 4;	                  // Add Elements
+$v = Vec\concat($t1, $t2)	  // Bulk Add Elements	
+Vec\drop($v,$n),            // Remove Elements is unsupported
+Vec\take($v,$n);            
+$first=C\pop_front(inout $x), 
+$last=C\pop_back(inout $x)
+C\contains_key($v, 1)       // Key Existence
+C\contains($v, 3)           // Value Existence
+$v1 === $v2                 // Equality (Order-Dependent)
+C\count($v)                 // Count Elements (i.e., length, size of array)
+vec<Tv>                     // Type Signature	
+$v is vec<_>	              // Type Refinement	
+Vec\from_async($v)          // Awaitable Consolidation
+```
+
+## Dict
+
+```php
+$d = dict[];	               // Initialize empty	
+$d = dict['foo' => 1];       // Literal
+$d = dict($keyed_container); // From Another Container
+$d['baz'] = 2;	             // Add Elements
+$d = Dict\merge($kt1, $kt2)	 // Bulk Add Elements	
+unset($d['baz']);	           // Remove Elements	
+C\contains_key($d, 'foo')    // Key Existence
+C\contains($d, 2)            // Value Existence
+$d1 === $d2                  // Equality (Order-Dependent)
+Dict\equal($d1, $d2)         // Equality (Order-Independent)
+C\count($d)                  // Count Elements (i.e., length, size of array)
+dict<Tk, Tv>                 // Type Signature	
+$d is dict<_, _>	           // Type Refinement	
+Dict\from_async($d)          // Awaitable Consolidation
+```
+
+## Keyset
+
+```php
+$k = keyset[];	             // Initialize empty	
+$k = keyset['foo', 'bar'];   // Literal
+$k = keyset($container);     // From Another Container
+$k = Keyset\keys($container);// Keys from Container
+$k[] = 'baz';	               // Add Elements
+$k = Keyset\union($t1, $t2)  // Bulk Add Elements	
+unset($k['baz']);	           // Remove Elements	
+C\contains_key($k, 'foo')    // Key Existence
+C\contains_key($k, 'foo')    // Value Existence
+$k1 === $k2                  // Equality (Order-Dependent)
+Keyset\equal($k1, $k2)       // Equality (Order-Independent)
+C\count($k)                  // Count Elements (i.e., length, size of array)
+keyset<Tk>                   // Type Signature	
+$k is keyset<_>  	           // Type Refinement	
+Keyset\from_async($x)        // Awaitable Consolidation
+```
+
+## Vector
+
+```php
+Vector::fromKeysOf($d)      // convert php dict keys to vector
+new Vector($d)              // convert php dict to vector
+new Vector($v)              // convert vec to vector
+new Vector($k)              // convert keyset to vector
+```
+
+## Map
+
+```php
+new Map($d)                 // convert php dict to map
+new Map($v)                 // convert vec to map
+new Map($k)                 // convert keyset to map
+```
+
+## Set
+
+```php
+Set::fromKeysOf($d)         // convert php dict keys to set
+new Set($d)                 // convert php dict values to set
+new Set($v)                 // convert vec to set
+new Set($k)                 // convert keyset to set
+```
+
+## Pair
 
 ## References
 
