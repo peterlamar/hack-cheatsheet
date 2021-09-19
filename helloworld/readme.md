@@ -13,3 +13,7 @@ To run:
 ```bash
 hhvm first.hack
 ```
+
+or
+
+In visual studio, F5 while hello.hack is open and primary focus and 'HHVM: Run Script' is selected in debugger

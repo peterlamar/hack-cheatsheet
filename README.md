@@ -93,14 +93,10 @@ else c;                      // If not $x and not y (optional)
 
 while ($x) a;                // Repeat 0 or more times while $x is true
 
-for ($x; y; z) a;            // Equivalent to: $x; while(y) {a; z;}
-
 $colors = vec["red", "white", "blue"];
+for ($i=0; $i<count($colors)>; $i++) $colors[i]; // Iterate over collection of three strings
 foreach ($colors as $color) {} // Iterate over collection of three strings
-
-$colors = vec["red", "white", "blue"];
 foreach ($colors as $key => $color) {} // Iterate with key and value
-
 foreach ($colors as $key => $_) {} // red, white and blue are ignored
 
 foreach($vec_of_tuples as list($here, $there)) // 
