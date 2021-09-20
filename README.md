@@ -2,11 +2,13 @@
 
 1. [Preprocessor](#preprocessor)
 1. [Literals](#literals)
+1. [Constants](#constants)
 1. [Declarations](#declarations)
 1. [Statements](#statements)
 1. [Attributes](#attributes)
 1. [Expressions](#expressions)
 1. [Namespaces](#namespaces)
+1. [Math](#math)
 1. [Floating point math](#floating-point-math)
 1. [String](#string)
 1. [Array](#array)
@@ -75,6 +77,12 @@ type IdSet = shape('id' => ?string, 'url' => ?string, 'count' => int);
 function get_IdSet(): IdSet {
   return shape('id' => null, 'url' => null, 'count' => 0);
 }
+```
+## Constants
+
+```php
+PHP_INT_MAX        // 2147483647 in 32 bit, 9223372036854775807 in 64
+PHP_INT_MIN        //-2147483648) in 32 bit,-9223372036854775807 in 64
 ```
 
 ## Declarations
@@ -196,6 +204,12 @@ namespace N {
 \N\f();                     // Use function f in namespace N
 use namespace N\f;          // Make f visible
 ```
+## Math
+
+```php
+$q = intdiv($n1, $n2);      // Integer quotient of n1/n2
+```
+
 ## Floating point math 
 
 ```php
@@ -215,7 +229,8 @@ fabs(x); fmod(x, y);        // Absolute value, x mod y
 $chars = str_split($inputString);
 foreach($chars as $c){}      // Iterate through char in string
 is_numeric($c);              // number or a numeric string
-count_chars($s, 0)           // count occurences and return 0-4 different results 0-array char=>freq, 1-array char > 0, 2-array char=0, 3-string with all unique, 4-string with all not used chars
+count_chars($s, 0);          // count occurences and return 0-4 different results 0-array char=>freq, 1-array char > 0, 2-array char=0, 3-string with all unique, 4-string with all not used chars
+implode('',$arr);            // Join array elements with a string
 ```
 
 ## Array
@@ -231,12 +246,16 @@ $a = array(1 => "a",            // Literal, multiple types
     "1"  => "b");
 var_dump($a);                   // Outputs values
 arr = array(5 => 1, 12 => 2);
-$arr[] = 56;    // This is the same as $arr[13] = 56;
-$arr["x"] = 42; // This adds a new element to
-                // the array with key "x"
-unset($arr[5]); // This removes the element from the array
-unset($arr);    // This deletes the whole array
-$array = array_values($array);  // Re-index:
+$arr[] = 56;                    // This is the same as $arr[13] = 56;
+$arr["x"] = 42;                 // This adds a new element to
+                                // the array with key "x"
+unset($arr[5]);                 // This removes the element from the array
+unset($arr);                    // This deletes the whole array
+$array = array_values($array);  // Re-index values to new array
+$sum = array_sum($array);       // Sum the array
+$slice = array_slice($a, 2);    // Return selected parts of the array
+foreach (range(0, 3, 1) as $n){ // Create Array w range of elements
+    echo $n; }                  // array(0, 1, 2, 3)
 ```
 
 Multi Dimensional Arrays
