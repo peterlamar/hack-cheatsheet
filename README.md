@@ -7,6 +7,7 @@
 1. [Statements](#statements)
 1. [Attributes](#attributes)
 1. [Expressions](#expressions)
+1. [Functions](#functions)
 1. [Namespaces](#namespaces)
 1. [Math](#math)
 1. [Floating point math](#floating-point-math)
@@ -152,6 +153,8 @@ use const UseNS\CON;         // one namespace to another
 echo "CON = ".\UseNS\CON."\n"; // access const CON by fully qualified 
 echo "CON = ".CON."\n";        // access by abbreviated name
 ```
+## Functions
+
 
 ## Expressions
 
@@ -229,7 +232,10 @@ fabs(x); fmod(x, y);        // Absolute value, x mod y
 $chars = str_split($inputString);
 foreach($chars as $c){}      // Iterate through char in string
 is_numeric($c);              // number or a numeric string
-count_chars($s, 0);          // count occurences and return 0-4 different results 0-array char=>freq, 1-array char > 0, 2-array char=0, 3-string with all unique, 4-string with all not used chars
+count_chars($s, 1);          // count occurences and return 0-4 different results 0-array char=>freq, 1-array char > 0 freq, 2-array char=0 freq, 3-string with all unique, 4-string with all not used chars
+foreach (count_chars($data, 1) as $i => $val) {
+   echo "There were $val instance(s) of \"" , chr($i) , "\" in the string.\n";
+}
 implode('',$arr);            // Join array elements with a string
 ```
 
