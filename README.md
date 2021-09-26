@@ -84,6 +84,7 @@ function get_IdSet(): IdSet {
 ```php
 PHP_INT_MAX        // 2147483647 in 32 bit, 9223372036854775807 in 64
 PHP_INT_MIN        //-2147483648) in 32 bit,-9223372036854775807 in 64
+PHP_EOL            // Line break
 ```
 
 ## Declarations
@@ -237,6 +238,10 @@ foreach (count_chars($data, 1) as $i => $val) {
    echo "There were $val instance(s) of \"" , chr($i) , "\" in the string.\n";
 }
 implode('',$arr);            // Join array elements with a string
+explode('@',$address)        // split string into by char
+$newstr = strrev($str)       // return reversed string
+$beg = substr($str, 2)       // return cdef from abcdef
+$beg = substr($str, 2, 1)    // return c from abcd
 ```
 
 ## Array
@@ -262,6 +267,8 @@ $sum = array_sum($array);       // Sum the array
 $slice = array_slice($a, 2);    // Return selected parts of the array
 foreach (range(0, 3, 1) as $n){ // Create Array w range of elements
     echo $n; }                  // array(0, 1, 2, 3)
+$ed = end($arr)                 // last element in array
+$st = $arr[0]                   // first element in array
 ```
 
 Multi Dimensional Arrays
