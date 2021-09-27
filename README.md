@@ -265,6 +265,11 @@ unset($arr);                    // This deletes the whole array
 $array = array_values($array);  // Re-index values to new array
 $sum = array_sum($array);       // Sum the array
 $slice = array_slice($a, 2);    // Return selected parts of the array
+$keys = array_keys($a, 3)       // Return keys of whose value matches '3'
+$rtn = array_filter($votes, function($v) use ($max, $k)
+    {
+        return $v + $k > $max;
+    }                           // Return array whose values match function
 foreach (range(0, 3, 1) as $n){ // Create Array w range of elements
     echo $n; }                  // array(0, 1, 2, 3)
 $ed = end($arr)                 // last element in array
