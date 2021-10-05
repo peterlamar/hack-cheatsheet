@@ -237,11 +237,15 @@ count_chars($s, 1);          // count occurences and return 0-4 different result
 foreach (count_chars($data, 1) as $i => $val) {
    echo "There were $val instance(s) of \"" , chr($i) , "\" in the string.\n";
 }
+for ($i = 0; $i < strlen($s); $i++){} // Iterate through string
 implode('',$arr);            // Join array elements with a string
-explode('@',$address)        // split string into by char
-$newstr = strrev($str)       // return reversed string
-$beg = substr($str, 2)       // return cdef from abcdef
-$beg = substr($str, 2, 1)    // return c from abcd
+explode('@',$address);       // split string into by char
+$newstr = strrev($str);      // return reversed string
+$beg = substr($str, 2);      // return cdef from abcdef
+$beg = substr($str, 2, 1);   // return c from abcd
+ctype_digit($str);           // return true if string is hex digit
+strval(2);                   // convert int to string
+$mystr .= "somestring";      // Append string operator
 ```
 
 ## Array
