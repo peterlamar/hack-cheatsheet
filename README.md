@@ -419,6 +419,10 @@ C\count($d)                  // Count Elements (i.e., length, size of array)
 dict<Tk, Tv>                 // Type Signature	
 $d is dict<_, _>	           // Type Refinement	
 Dict\from_async($d)          // Awaitable Consolidation
+
+$d = = dict[11 => 101, 12 => 102];  
+Dict\from_values($d, $x ==> $x+1); // Dict([104] => 101, [105] => 102)
+Dict\from_keys($d, $x ==> $x+1);   // Dict([101] => 104, [102] => 105)
 ```
 
 ## Keyset
