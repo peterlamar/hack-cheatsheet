@@ -171,6 +171,13 @@ $a = "Hello ";
 $a .= "World!";            // now $a contains "Hello World!"
 $a = '12345';
 
+Vec\sort(Vec\map(vec[2, 1, 3], 
+$a ==> $a * $a))           // Evaluates to vec[1,4,9]
+
+$x = vec[2,1,3]            // Chain function calls with |> 
+  |> Vec\map($$, $a ==> $a * $a) // $$ with value vec[2,1,3]
+  |> Vec\sort($$); // $$ with value vec[4,1,9], evaluates to vec[1,4,9]
+
 // This works:
 echo "qwe{$a}rty";         // qwe12345rty, using braces
 echo "qwe" . $a . "rty";   // qwe12345rty, concatenation used
