@@ -8,6 +8,7 @@
 1. [Attributes](#attributes)
 1. [Expressions](#expressions)
 1. [Functions](#functions)
+1. [Lambda](#lambda)
 1. [Namespaces](#namespaces)
 1. [Math](#math)
 1. [Floating point math](#floating-point-math)
@@ -73,6 +74,11 @@ echo ">$s<\n";
 $x = 123;
 echo ">\$x.$x"."<\n";       // >$x.123< \$x escapes var
 null                        // null literal, used to initialize
+
+$d = dict["red" => 4, "white" =>12, "blue" => 3];
+$e = $d["white"]; // designates the element with key "white" value 12
+$d["red"] = 9;    // changes the element with key "red" from 4 to 9
+
 type IdSet = shape('id' => ?string, 'url' => ?string, 'count' => int);
 
 function get_IdSet(): IdSet {
@@ -156,6 +162,51 @@ echo "CON = ".CON."\n";        // access by abbreviated name
 ```
 ## Functions
 
+```php
+function add_one(int $x): int {
+  return $x + 1;
+}
+
+function add_value(int $x, int $y = 1): int {
+  return $x + $y;
+}
+
+
+function sum_ints(int $val, int ...$vals): int { // variable number of args
+  $result = $val;
+  
+  foreach ($vals as $v) {
+    $result += $v;
+  }
+  return $result;
+}
+
+// Passing positional arguments.
+sum_ints(1, 2, 3);
+
+// You can also pass a collection into a variadic parameter.
+$args = vec[1, 2, 3];
+sum_ints(0, ...$args);
+
+function apply_func(int $v, (function(int): int) $f): int {
+  return $f($v);
+}
+
+function usage_example(): void { // Pass func as value
+  $x = apply_func(0, $x ==> $x + 1);
+}
+```
+
+### Lambda
+
+```php
+$f = $x ==> $x + 1;  // Defines lambda, note 'fat arrow' ==>
+$f2 = $x ==> { return $x + 1; }; // Can also be block
+
+$two = $f(1);
+
+$f = (int $x): int ==> $x + 1;   // optional type
+```
 
 ## Expressions
 
@@ -164,12 +215,33 @@ Concatenation operator '.'
 Concatenation assignment operator '.=' 
 
 ```php
+1 is int;                  // true
+'foo' is int;              // false
+
+enum MyEnum: int {
+  FOO = 1;
+}
+1 is MyEnum                // true
+42 is MyEnum               // false
+'foo' is MyEnum            // false
+
+1 as int;                  // 1
+'foo' as int;              // TypeAssertionException
+
+1 ?as int;                 // 1
+'foo' ?as int;             // null
+
 $a = "Hello ";
 $b = $a . "World!";        // now $b contains "Hello World!"
 
 $a = "Hello ";
 $a .= "World!";            // now $a contains "Hello World!"
 $a = '12345';
+
+vec[10,20] == vec[10,20.0]  // result has value true
+vec[10,20] === vec[10,20.0] // result has value false
+dict["red"=>0,"green"=>0] === dict["red"=>0,"green"=>0] // result has value true
+dict["red"=>0,"green"=>0] === dict["green"=>0,"red"=>0] // result has value false
 
 Vec\sort(Vec\map(vec[2, 1, 3], 
 $a ==> $a * $a))           // Evaluates to vec[1,4,9]
