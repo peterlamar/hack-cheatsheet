@@ -206,6 +206,17 @@ $f2 = $x ==> { return $x + 1; }; // Can also be block
 $two = $f(1);
 
 $f = (int $x): int ==> $x + 1;   // optional type
+
+$v = vec[1, 2];
+$v_new = await Vec\map_async( // $v_new = vec[dict['v1'=>1, 'v2'=>2],
+  $v,                         //              dict['v1'=>2, 'v2'=>4]]; 
+  async ($v_item) ==> {
+    return shape(
+      'v1' => $v_item,
+      'v2' => $v_item + $v_item,
+    );
+  },
+);
 ```
 
 ## Expressions
