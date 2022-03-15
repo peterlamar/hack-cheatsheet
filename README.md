@@ -336,6 +336,7 @@ $beg = substr($str, 2, 1);   // return c from abcd
 ctype_digit($str);           // return true if string is hex digit
 strval(2);                   // convert int to string
 $mystr .= "somestring";      // Append string operator
+Str\length("somestring");    // string length = 10 
 ```
 
 ## Array
